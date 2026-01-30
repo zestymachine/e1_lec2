@@ -9,7 +9,7 @@ public class newScript : MonoBehaviour
     float movementX;
     float movementY;
     [SerializeField] float speed = 5.0f; 
-    [SerializeField] float jumpForce = 25f;
+    [SerializeField] float jumpForce = 5.0f;
     int jumpCount = 0; 
     [SerializeField] int maxJumps = 2; 
     Rigidbody2D rb; 
@@ -32,7 +32,8 @@ public class newScript : MonoBehaviour
     {
         
     }
-    void OnMove(InputValue value) { 
+    void OnMove(InputValue value) 
+    { 
         //first part of vector 2 is value you're moving it to 
         //+1 is to right, -1 to left
         Vector2 v = value.Get<Vector2>(); 
@@ -45,7 +46,8 @@ public class newScript : MonoBehaviour
     }
 
     void OnJump(InputValue value) { 
-        if (value.isPressed) { 
+        if (value.isPressed) 
+        { 
             jumpPressed = true; 
         }
     }
@@ -57,7 +59,8 @@ public class newScript : MonoBehaviour
         // transform.position = new Vector2(transform.position.x + movementDistanceX, transform.position.y + movementDistanceY);
         // rb.linearVelocity = new Vector2(movementX * speed, movementY * speed); 
         rb.linearVelocity = new Vector2(movementX * speed, rb.linearVelocity.y);
-
+        Debug.Log("Velocity X = " + rb.linearVelocity.x);
+        Debug.DrawRay(transform.position, Vector2.right * 0.5f, Color.red);
         //jumping code 
       
         // if (movementY >0 && isGrounded) 
@@ -129,3 +132,4 @@ public class newScript : MonoBehaviour
 
 
 }
+
